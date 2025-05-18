@@ -1,12 +1,11 @@
 from flask_sqlalchemy import SQLAlchemy
-from models import db
+from . import db
 
 class Libro:
     """
     Representa un libro en el sistema.
 
     Args:
-        isbn (str): Identificador único.
         titulo (str)
         autor (str)
         precio (float): > 0

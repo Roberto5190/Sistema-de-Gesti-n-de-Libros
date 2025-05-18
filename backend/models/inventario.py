@@ -1,22 +1,29 @@
+from .libro import Libro
+
 class Inventario:
     def __init__(self):
-        self._libros = []  # Lista que almacenará los libros
+        self._libros : dict[str, Libro] = {}  # Diccionario que almacenará los libros
 
     # Método para agregar un libro al inventario
-    def agregar_libro(self, libro):
+    def agregar_libro(self, libro) -> None:
         if not isinstance(libro, Libro):
             raise ValueError("El objeto no es una instancia de la clase Libro")
-        self._libros.append(libro)
+        
+        if libro.titulo in self._libros:
+            raise ValueError(f"El libro '{libro.titulo}' ya existe en el inventario")
+        
+        self._libros[libro.titulo] = libro # Agregamos el libro al diccionario usando su título como clave
 
     # Método para buscar un libro por su título
-    def buscar_libro(self, titulo):
-        for libro in self._libros:
-            if libro.titulo == titulo:
+    def buscar_libro(self, titulo: str) -> Libro:
+        titulo_lower = titulo.lower()
+        for libro in self._libros.values():
+            if libro.titulo.lower() == titulo_lower:
                 return libro
         return None
 
     # Método para registrar una venta de un libro
-    def registrar_venta(self, titulo, cantidad):
+    def registrar_venta(self, titulo: str, cantidad: int) -> None:
         libro = self.buscar_libro(titulo)
         if libro is None:
             raise ValueError('Libro no encontrado')

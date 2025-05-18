@@ -1,7 +1,11 @@
 
 import unittest
-from .usuario import Usuario, Moderador, Admin
-from .usuario import login
+from models.usuario import Usuario, Moderador, Admin
+from models.usuario import login
+
+# EJECUTAR DESDE LA RAIZ DEL PROYECTO
+# comando: python -m unittest discover -s tests -p "test_*.py" -v
+
 
 class TestUsuarios(unittest.TestCase):
 

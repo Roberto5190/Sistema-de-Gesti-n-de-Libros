@@ -1,7 +1,12 @@
-# test_inventario.py
+
 import unittest
-from inventario import Inventario
-from libro import Libro
+from models.inventario import Inventario
+from models.libro import Libro
+
+
+# EJECUTAR DESDE LA RAIZ DEL PROYECTO
+# comando: python -m unittest discover -s tests -p "test_*.py" -v
+
 
 class TestInventario(unittest.TestCase):
 
@@ -21,7 +26,7 @@ class TestInventario(unittest.TestCase):
         """Prueba que un libro con precio válido se crea correctamente."""
         self.assertEqual(self.libro1.titulo, "Cien años de soledad")
         self.assertEqual(self.libro1.precio, 20)
-        self.assertEqual(self.libro1.cantidad, 10)
+        self.assertEqual(self.libro1.stock, 10)
 
     def test_crear_libro_con_precio_negativo(self):
         """Prueba que no se pueda crear un libro con precio negativo."""
