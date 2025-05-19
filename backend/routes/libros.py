@@ -5,6 +5,8 @@ from flask import Blueprint, request, jsonify
 from sqlalchemy.exc import IntegrityError # Importar la excepción de integridad
 from models import LibroModel, db
 
+from routes.auth import role_required
+
 libros_bp = Blueprint('libros', __name__, url_prefix='/api/libros')
 
 # ------------------ Helpers de serialización ------------------
@@ -90,6 +92,7 @@ def update_libro(id):
 
 # DELETE /api/libros/<int:id>: elimina un libro
 @libros_bp.delete('/<int:id>')
+@role_required("admin")
 def delete_libro(id):
     libro = LibroModel.query.get_or_404(id)
     db.session.delete(libro)

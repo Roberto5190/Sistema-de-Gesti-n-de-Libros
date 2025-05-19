@@ -1,4 +1,5 @@
 from flask import Flask, jsonify
+from flask_cors import CORS
 from models import db  # Aquí se importa db de models/__init__.py
 
 
@@ -17,6 +18,11 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Inicializa SQLAlchemy con la aplicación
 db.init_app(app)
+
+
+# ---- CORS ----
+CORS(app, origins=["http://localhost:5173"], supports_credentials=False)
+
 
 # Registrar los Blueprints
 from routes.libros import libros_bp
