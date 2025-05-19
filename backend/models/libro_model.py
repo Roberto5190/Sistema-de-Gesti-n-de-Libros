@@ -20,12 +20,8 @@ class LibroModel(db.Model):
     titulo = db.Column(db.String(255), nullable=False)  # Columna para el título
     autor = db.Column(db.String(255), nullable=False)  # Columna para el autor
     precio = db.Column(db.Float, nullable=False)  # Columna para el precio
-    stock = db.column(db.Integer, nullable=False, default=0)  # Columna para el stock
+    stock = db.Column(db.Integer, nullable=False, default=0)  # Columna para el stock
 
-    def __init__(self, titulo, autor, precio):
-        self.titulo = titulo
-        self.autor = autor
-        self.precio = precio
 
     def __repr__(self):
-        return f"<Libro {self.titulo} de {self.autor}, Precio: {self.precio}>"
+        return f"<Libro {self.titulo} de {self.autor}, Precio: {self.precio}, Stock: {self.stock}>"

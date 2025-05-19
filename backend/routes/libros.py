@@ -1,6 +1,6 @@
 # routes/libros.py
 from flask import Blueprint, request, jsonify
-from models.libro import LibroModel, db
+from models import LibroModel, db
 
 libros_bp = Blueprint('libros', __name__)
 
